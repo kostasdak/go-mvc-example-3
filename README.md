@@ -1,6 +1,6 @@
-# Example 02 - gomvc package
+# Example 03 - gomvc package
 
-Example 02</br>
+Example 03</br>
 gomvc - MVC (Model View Controller) implementation with Golang using MySQL database
 
 ## Overview
