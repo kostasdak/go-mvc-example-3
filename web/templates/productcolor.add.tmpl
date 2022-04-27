@@ -1,0 +1,30 @@
+{{template "base" .}}
+
+{{define "content"}}
+    {{$token := .CSRFToken}}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ $m := .Model }}
+                {{ $u := .URLParams }}
+                <h1 class="text-center mt-4">Add Color</h1>
+                {{if .URLParams}}
+                    {{ $p := index $u "product_id" }}
+                    <form method="post" action="" class="" novalidate>
+                        <input type="hidden" name="csrf_token" value="{{$token}}">
+                        <input type="hidden" name="product_id" value="{{index $p 0}}">
+                        <div class="form-group mt-3">
+                            <label for="color">Product Color:</label>
+                            <input class="form-control"
+                                id="color" autocomplete="off" type='text'
+                                name='color' value="" required>
+                        </div>
+
+                        <hr>
+                        <input type="submit" class="btn btn-primary" value="Create">
+                    </form>
+                {{end}}
+            </div>
+        </div>
+    </div>
+{{end}}

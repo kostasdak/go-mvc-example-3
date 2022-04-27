@@ -1,0 +1,76 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-4">Edit Product</h1>
+                
+                <form method="post" action="" class="" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+                    {{ with .Result }}
+                        {{ range . }}
+                            {{$id := index .Values 0}}  
+                            <div class="form-group mt-3">
+                                <label for="code">Product Code:</label>
+                                <input class="form-control"
+                                    id="code" autocomplete="off" type='text'
+                                    name='code' value="{{index .Values 1}}" required>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label for="type">Vehicle Type:</label>
+                                <input class="form-control"
+                                    id="type" autocomplete="off" type='text'
+                                    name='type' value="{{index .Values 2}}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input class="form-control"
+                                    id="name" autocomplete="off" type='text'
+                                    name='name' value="{{index .Values 3}}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea class="form-control" id="description"
+                                    autocomplete="off" type='text'
+                                    name='description' required>{{index .Values 4}}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price">Price:</label>
+                                <input class="form-control" id="price"
+                                    autocomplete="off" type='text'
+                                    name='price' value="{{index .Values 5}}" required>
+                            </div>
+                            <hr>
+                            {{$sr := .Subresult}}
+                        
+                            <div class="row">
+                                {{ range $sr }}
+                                <div>
+                                    <div class="col-1 btn" style="background-color: {{index .Values 2}};width:80px;">&nbsp;</div>
+                                    <a href="/productcolor/edit/{{index .Values 0}}" class="btn btn-primary">Edit</a>
+                                </div>
+                                {{end}}
+                                <div >
+                                    <a href="/productcolor/add/?product_id={{$id}}" class="btn btn-success">Add new color</a>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div  class="col-6">
+                                    <input type="submit" class="btn btn-primary" value="Update">
+                                </div>
+                                
+                            </div>
+                        {{ end }}
+                    {{ end }}
+                </form>
+                
+            </div>
+        </div>
+    </div>
+{{end}}

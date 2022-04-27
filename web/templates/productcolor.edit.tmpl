@@ -1,0 +1,36 @@
+{{template "base" .}}
+
+{{define "content"}}
+    {{$token := .CSRFToken}}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-4">Edit Color</h1>
+                {{ with index .Result 0 }}
+                {{$id := index .Values 0}}
+                    <form method="post" action="" class="" novalidate>
+                        <input type="hidden" name="csrf_token" value="{{$token}}">
+                        <div class="form-group mt-3">
+                            <label for="color">Product Color:</label>
+                            <input class="form-control"
+                                id="color" autocomplete="off" type='text'
+                                name='color' value="{{index .Values 2}}" required>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="submit" class="btn btn-primary" value="Update">
+                            </div>
+                            <div class="col-6 text-right">
+                                <input type="button" onclick="document.getElementById('delForm').submit();" class="btn btn-danger" value="Delete">
+                            </div>
+                        </div>
+                    </form>
+                    <form id="delForm" method="post" action="/productcolor/delete/{{$id}}" class="" novalidate>
+                        <input type="hidden" name="csrf_token" value="{{$token}}">
+                    </form>
+                {{end}}
+            </div>
+        </div>
+    </div>
+{{end}}

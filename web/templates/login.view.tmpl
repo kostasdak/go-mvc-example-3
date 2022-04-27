@@ -1,0 +1,34 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="container">
+        <div class="row">
+            <div class="col-6" style="margin: 0 auto;">
+                <h1 class="text-center mt-4">Login</h1>
+                <form method="post" action="" class="" >
+                    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+                    <div class="form-group mt-3">
+                        <label for="name">Username :</label>
+                        <input class="form-control"
+                               id="username" autocomplete="off" type='username'
+                               name='username' value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Password:</label>
+                        <input class="form-control"
+                               id="password" autocomplete="off" type='password'
+                               name='password' value="" required>
+                    </div>
+                    <div class="col-12  text-center">&nbsp</div>
+                    <div class="col-12  text-center">
+                        <input type="submit" class="btn btn-primary" value="Login">
+                    </div>
+                    <div class="col-12  text-center">&nbsp</div>
+                    <div class="col-12  text-center">
+                        Dont have an account ? <a href="/signup">Sign up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{{end}}
