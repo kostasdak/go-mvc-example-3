@@ -36,17 +36,9 @@ UseCache: false
 #Enable information log in console window, set to false in production server
 EnableInfoLog: true
 
-#InfoFile "path.to.filename"
-#Set info filename, direct info log to file instead of console window
-InfoFile: ""
-
 #ShowStackOnError true/false
 #Set to true to see the stack error trace in web page error report, set to false in production server
 ShowStackOnError: true
-
-#ErrorFile "path.to.filename"
-#Set error filename, direct error log to file instead of web page, set this file name in production server
-ErrorFile: ""
 
 #Server Settings
 server:
@@ -83,7 +75,7 @@ var c gomvc.Controller
 func main() {
 
 	// Load Configuration file
-	cfg := gomvc.LoadConfig("./config/config.yml")
+	cfg := gomvc.ReadConfig("./config/config.yml")
 
 	// Connect to database
 	db, err := gomvc.ConnectDatabase(cfg.Database.Dbuser, cfg.Database.Dbpass, cfg.Database.Dbname)
